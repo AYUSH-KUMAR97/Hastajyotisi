@@ -1,7 +1,11 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from datetime import datetime
+
+load_dotenv()
 from google import genai
 from google.genai import types
 
@@ -99,7 +103,7 @@ def get_free_prediction(user_data: FreeInput):
     
     try:
         # ⚠️ YAHAN APNI ASLI GEMINI API KEY PASTE KARNA
-        client = genai.Client(api_key="AQ.Ab8RN6L1LlITdJKIeylaoZ34J_dLWK48nrOTkrqbkXeudDyBPw") 
+        client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
         
         response = client.models.generate_content(
             model='gemini-2.5-flash', 
@@ -160,7 +164,7 @@ def get_premium_prediction(user_data: PremiumInput):
     
     try:
         # ⚠️ YAHAN BHI APNI ASLI GEMINI API KEY PASTE KARNA
-        client = genai.Client(api_key="AQ.Ab8RN6L1LlITdJKIeylaoZ34J_dLWK48nrOTkrqbkXeudDyBPw") 
+        client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
         
         response = client.models.generate_content(
             model='gemini-2.5-flash', 

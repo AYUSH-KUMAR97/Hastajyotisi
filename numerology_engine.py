@@ -131,7 +131,8 @@ if __name__ == "__main__":
         # 4. Gemini API Connection
         # Yeh automatically OS se GEMINI_API_KEY utha lega
         try:
-            client = genai.Client(api_key="AQ.Ab8RN6L1LlITdJKIeylaoZ34J_dLWK48nrOTkrqbkXeudDyBPw")
+            api_key = os.environ.get("GEMINI_API_KEY")
+            client = genai.Client(api_key=api_key)
             
             # Hum use kar rahe hain gemini-2.5-flash jo ki fast aur accurate hai
             response = client.models.generate_content(
