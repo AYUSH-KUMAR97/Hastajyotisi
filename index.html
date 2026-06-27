@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ MATRIX ASTRO AI // QUANTUM CORE v2.5</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+        
+        body {
+            background-color: #030308;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .tech-font { font-family: 'Orbitron', sans-serif; }
+        
+        .cyber-grid {
+            background-image: radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        
+        .scanner-line {
+            background: linear-gradient(to bottom, transparent, rgba(34, 197, 94, 0.5), transparent);
+            animation: scan 2s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+        
+        .neon-border-indigo { border-color: rgba(99, 102, 241, 0.3); box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
+        .neon-glow-red { box-shadow: 0 0 30px rgba(239, 68, 68, 0.25); }
+        .neon-glow-green { box-shadow: 0 0 30px rgba(34, 197, 94, 0.25); }
+        .neon-glow-amber { box-shadow: 0 0 30px rgba(245, 158, 11, 0.25); }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen relative flex items-center justify-center p-4 cyber-grid">
+
+    <!-- Ambient Gradients -->
+    <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-rose-950/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <!-- Main Terminal Card -->
+    <div class="w-full max-w-2xl bg-[#090d16]/80 backdrop-blur-xl rounded-3xl border border-gray-800/80 p-6 md:p-10 relative overflow-hidden neon-border-indigo">
+        
+        <!-- HUD Indicators -->
+        <div class="absolute top-3 left-4 text-[10px] tech-font text-indigo-500 tracking-widest opacity-60">SYSTEM://ASTRO_CORE_v2.5</div>
+        <div class="absolute top-3 right-4 text-[10px] tech-font text-emerald-500 tracking-widest opacity-60 animate-pulse" id="core-status">● CORE_ONLINE</div>
+
+        <!-- HEADER -->
+        <div class="text-center mb-10 relative">
+            <h1 class="text-4xl font-black tech-font tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 mb-3">
+                METRIC ASTRO AI
+            </h1>
+            <p class="text-gray-400 text-xs tracking-wider uppercase opacity-80">Quantum Numerology & Vedic Decryption Engine</p>
+            <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-indigo-500 to-transparent mx-auto mt-4"></div>
+        </div>
+
+        <!-- 1. FREE INPUT PHASE -->
+        <div id="input-phase" class="space-y-8 relative">
+            <div class="relative group">
+                <label class="block text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3 tech-font">01 // SUBJECT FULL NAME</label>
+                <input type="text" id="username" placeholder="ENTER SUBJECT NAME..." 
+                       class="w-full bg-black/40 border border-gray-800 rounded-xl px-5 py-4 tech-font tracking-wide text-cyan-400 placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition-all duration-300">
+            </div>
+
+            <div class="relative group">
+                <label class="block text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3 tech-font">02 // TEMPORAL MATRIX (DOB)</label>
+                <input type="text" id="userdob" placeholder="DD-MM-YYYY (e.g. 29-11-2007)" 
+                       class="w-full bg-black/40 border border-gray-800 rounded-xl px-5 py-4 tech-font tracking-wide text-cyan-400 placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition-all duration-300">
+            </div>
+
+            <button onclick="triggerFreeDecryption()" 
+                    class="w-full relative bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold tracking-widest uppercase text-sm py-4 rounded-xl shadow-xl transition-all duration-300 transform active:scale-[0.98] cursor-pointer">
+                DECRYPT METRIC MATRIX 🔥
+            </button>
+        </div>
+
+        <!-- 2. SCANNING LOG PHASE -->
+        <div id="scanning-phase" class="hidden relative py-16 text-center border border-dashed border-emerald-500/30 rounded-2xl bg-emerald-950/5 overflow-hidden">
+            <div class="absolute inset-x-0 h-12 scanner-line z-10"></div>
+            <div class="space-y-4 relative z-0">
+                <div id="scan-title" class="tech-font text-emerald-400 text-sm tracking-widest animate-pulse">COMPUTING MATRIX DATA...</div>
+                <div class="text-xs text-gray-500 font-mono tracking-normal" id="log-feed">CONNECTING EXTENSION ENGINE [OK]...</div>
+            </div>
+        </div>
+
+        <!-- 3. OUTPUT PHASE -->
+        <div id="output-phase" class="hidden space-y-8 mt-4 animate-fade-in">
+            
+            <!-- Grid Badges -->
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-black/30 border border-gray-800 p-4 rounded-xl text-center">
+                    <div class="text-[10px] tech-font text-gray-500 tracking-wider">PSYCHIC_NO</div>
+                    <div id="res-moolank" class="text-3xl font-black tech-font text-indigo-400 mt-1">0</div>
+                </div>
+                <div class="bg-black/30 border border-gray-800 p-4 rounded-xl text-center">
+                    <div class="text-[10px] tech-font text-gray-500 tracking-wider">DESTINY_NO</div>
+                    <div id="res-bhagyank" class="text-3xl font-black tech-font text-purple-400 mt-1">0</div>
+                </div>
+                <div class="bg-black/30 border border-gray-800 p-4 rounded-xl text-center">
+                    <div class="text-[10px] tech-font text-gray-500 tracking-wider">EXPRESSION_NO</div>
+                    <div id="res-namenumber" class="text-3xl font-black tech-font text-pink-400 mt-1">0</div>
+                </div>
+            </div>
+
+            <!-- Free Report Alert Panel -->
+            <div id="compat-panel" class="p-5 rounded-xl border relative transition-all duration-500">
+                <div id="compat-status" class="tech-font font-bold tracking-wider text-sm mb-2"></div>
+                <div id="compat-details" class="text-xs leading-relaxed text-gray-300"></div>
+            </div>
+
+            <!-- Free AI Box -->
+            <div class="bg-black/50 border border-gray-800 rounded-2xl p-5 relative">
+                <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-widest tech-font mb-3">● CORE DIAGNOSTIC REPORT</h3>
+                <div id="res-prediction" class="text-gray-300 text-sm leading-relaxed whitespace-pre-line"></div>
+            </div>
+
+            <!-- 🚨 UPGRADED PREMIUM PAYWALL INDUSTRIAL CARD -->
+            <div id="premium-paywall" class="border border-amber-500/40 bg-amber-950/5 rounded-2xl p-6 relative overflow-hidden neon-glow-amber">
+                <div class="absolute top-2 right-3 text-[9px] tech-font text-amber-500 tracking-widest">// RESOLUTION_LOCKED</div>
+                
+                <div id="paywall-cta" class="text-center space-y-4">
+                    <div class="text-2xl">🔒</div>
+                    <h3 class="tech-font font-bold text-amber-400 text-base tracking-wider">CRITICAL BLOCK REMEDY AVAILABLE</h3>
+                    <p class="text-xs text-gray-400 max-w-md mx-auto leading-relaxed">
+                        Tera naam core levels par match nahi kar raha. Unlock the premium report to get 3 new futuristic names with exact letter-by-letter Vedic calculations according to your Janm Rashi.
+                    </p>
+                    <button onclick="revealPremiumInputs()" class="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black text-xs tracking-widest uppercase rounded-xl transition cursor-pointer">
+                        UNLOCK REMEDY MODULE [ ₹99 ]
+                    </button>
+                </div>
+
+                <!-- Hidden Premium Form Integration (Reveals smoothly) -->
+                <div id="premium-form" class="hidden space-y-5 pt-2 animate-fade-in">
+                    <div class="h-[1px] bg-amber-500/20 my-2"></div>
+                    <h3 class="tech-font text-xs font-bold text-amber-400 tracking-wider">ENTER METRIC BIRTH CRITERIA:</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 tech-font uppercase mb-2">03 // BIRTH TIME (HH:MM)</label>
+                            <input type="text" id="birthtime" placeholder="e.g. 14:30" class="w-full bg-black/60 border border-amber-500/30 rounded-xl px-4 py-3 tech-font text-sm text-amber-400 placeholder-gray-700 focus:outline-none focus:border-amber-400 transition">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 tech-font uppercase mb-2">04 // BIRTH PLACE (CITY)</label>
+                            <input type="text" id="birthplace" placeholder="e.g. Meerut" class="w-full bg-black/60 border border-amber-500/30 rounded-xl px-4 py-3 tech-font text-sm text-amber-400 placeholder-gray-700 focus:outline-none focus:border-amber-400 transition">
+                        </div>
+                    </div>
+
+                    <button onclick="triggerPremiumDecryption()" class="w-full bg-gradient-to-r from-emerald-600 to-cyan-600 text-white font-bold tracking-widest uppercase text-xs py-3.5 rounded-xl transition duration-300 shadow-lg cursor-pointer">
+                        RUN PREMIUM METRIC GENERATION 🚀
+                    </button>
+                </div>
+            </div>
+
+            <!-- Premium Output Display Area -->
+            <div id="premium-output-box" class="hidden space-y-4 border border-cyan-500/30 bg-cyan-950/5 rounded-2xl p-5 relative neon-glow-green">
+                <div class="absolute top-2 right-3 text-[9px] tech-font text-cyan-500 tracking-widest">// DECRYPTED_PREMIUM_INTEL</div>
+                <div class="grid grid-cols-2 gap-4 bg-black/40 p-4 rounded-xl border border-gray-800 text-xs">
+                    <div><span class="text-gray-500 tech-font">JANM RASHI:</span> <span id="p-rashi" class="text-cyan-400 font-bold"></span></div>
+                    <div><span class="text-gray-500 tech-font">RULER PLANET:</span> <span id="p-ruler" class="text-purple-400 font-bold"></span></div>
+                    <div><span class="text-gray-500 tech-font">LUCKY LETTERS:</span> <span id="p-letters" class="text-pink-400 font-bold"></span></div>
+                    <div><span class="text-gray-500 tech-font">TARGET LUCKY NO:</span> <span id="p-num" class="text-emerald-400 font-bold"></span></div>
+                </div>
+                <div id="res-premium-prediction" class="text-gray-200 text-sm leading-relaxed whitespace-pre-line pt-2 font-normal tracking-wide"></div>
+            </div>
+
+            <button onclick="resetHUD()" class="w-full bg-gray-950 border border-gray-800 text-gray-600 text-xs font-bold uppercase tracking-widest py-3 rounded-xl hover:text-gray-400 transition tech-font cursor-pointer">
+                // WIPE HUD SESSION
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        const freeLogs = ["INITIALIZING LOGIC...", "SCANNING NAME SYLLABLES...", "CORE ANALYSIS COMPLETE."];
+        const premiumLogs = ["CONNECTING VEDIC KINETICS...", "EXTRACTING SWISS EPHEMERIS MATHEMATICS...", "CALCULATING LUNAR CONSTELLATIONS...", "INJECTING REMEDY DATA PACKS..."];
+
+        function runHUDLogs(logArray, callback) {
+            let idx = 0;
+            const logFeed = document.getElementById('log-feed');
+            const interval = setInterval(() => {
+                if (idx < logArray.length) {
+                    logFeed.innerText = logArray[idx];
+                    idx++;
+                } else {
+                    clearInterval(interval);
+                    callback();
+                }
+            }, 500);
+        }
+
+        async function triggerFreeDecryption() {
+            const name = document.getElementById('username').value.trim();
+            const dob = document.getElementById('userdob').value.trim();
+            if (!name || !dob) { alert("ERROR: SUBJECT PARAMETERS INCOMPLETE."); return; }
+
+            document.getElementById('input-phase').classList.add('hidden');
+            document.getElementById('scan-title').innerText = "RUNNING CRUNCHED FREE DIAGNOSTIC...";
+            document.getElementById('scanning-phase').classList.remove('hidden');
+
+            runHUDLogs(freeLogs, async () => {
+                try {
+                    const res = await fetch('http://127.0.0.1:8000/predict', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, dob })
+                    });
+                    const data = await res.json();
+
+                    document.getElementById('res-moolank').innerText = data.numerology.Moolank;
+                    document.getElementById('res-bhagyank').innerText = data.numerology.Bhagyank;
+                    document.getElementById('res-namenumber').innerText = data.numerology.Name_Number;
+                    document.getElementById('res-prediction').innerText = data.raw_prediction;
+
+                    const panel = document.getElementById('compat-panel');
+                    if (data.compatibility.status.includes("DUSHMANI")) {
+                        panel.className = "p-5 rounded-xl border bg-rose-950/10 border-rose-900/40 text-rose-400 neon-glow-red";
+                        document.getElementById('compat-status').innerText = "🚨 COSMIC WARFARE // INSTABILITY CONFIRMED";
+                    } else {
+                        panel.className = "p-5 rounded-xl border bg-emerald-950/10 border-emerald-900/40 text-emerald-400 neon-glow-green";
+                        document.getElementById('compat-status').innerText = "🛡️ HARMONIZED MATRIX // STRUCTURE SAFE";
+                    }
+                    panel.nextElementSibling;
+                    document.getElementById('compat-details').innerText = data.compatibility.details.join(', ');
+
+                    document.getElementById('scanning-phase').classList.add('hidden');
+                    document.getElementById('output-phase').classList.remove('hidden');
+                } catch (e) { alert("HUD FETCH EXCEPTION."); resetHUD(); }
+            });
+        }
+
+        function revealPremiumInputs() {
+            document.getElementById('paywall-cta').classList.add('hidden');
+            document.getElementById('premium-form').classList.remove('hidden');
+        }
+
+        async function triggerPremiumDecryption() {
+            const name = document.getElementById('username').value.trim();
+            const dob = document.getElementById('userdob').value.trim();
+            const birth_time = document.getElementById('birthtime').value.trim();
+            const birth_place = document.getElementById('birthplace').value.trim();
+
+            if (!birth_time || !birth_place) { alert("ERROR: VEDIC METRICS MISSING."); return; }
+
+            document.getElementById('premium-paywall').classList.add('hidden');
+            document.getElementById('scan-title').innerText = "DECRYPTING FULL DEEP-DIVE PREMIUM MATRIX...";
+            document.getElementById('scanning-phase').classList.remove('hidden');
+            document.getElementById('core-status').innerText = "● COMPUTING_PREMIUM_DATA";
+            document.getElementById('core-status').className = "absolute top-3 right-4 text-[10px] tech-font text-amber-500 tracking-widest animate-pulse";
+
+            runHUDLogs(premiumLogs, async () => {
+                try {
+                    const res = await fetch('http://127.0.0.1:8000/predict-premium', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, dob, birth_time, birth_place })
+                    });
+                    const data = await res.json();
+
+                    document.getElementById('p-rashi').innerText = data.vedic_metrics.rashi;
+                    document.getElementById('p-ruler').innerText = data.vedic_metrics.ruler_planet;
+                    document.getElementById('p-letters').innerText = data.vedic_metrics.lucky_letters.join(', ');
+                    document.getElementById('p-num').innerText = data.vedic_metrics.target_lucky_number;
+                    document.getElementById('res-premium-prediction').innerText = data.premium_recommendation;
+
+                    document.getElementById('scanning-phase').classList.add('hidden');
+                    document.getElementById('premium-output-box').classList.remove('hidden');
+                    document.getElementById('core-status').innerText = "● PREMIUM_LOCKED_IN";
+                    document.getElementById('core-status').className = "absolute top-3 right-4 text-[10px] tech-font text-cyan-400 tracking-widest";
+                } catch (e) { alert("PREMIUM HUD EXCEPTION."); resetHUD(); }
+            });
+        }
+
+        function resetHUD() {
+            document.getElementById('username').value = '';
+            document.getElementById('userdob').value = '';
+            document.getElementById('birthtime').value = '';
+            document.getElementById('birthplace').value = '';
+            document.getElementById('input-phase').classList.remove('hidden');
+            document.getElementById('scanning-phase').classList.add('hidden');
+            document.getElementById('output-phase').classList.add('hidden');
+            document.getElementById('premium-form').classList.add('hidden');
+            document.getElementById('paywall-cta').classList.remove('hidden');
+            document.getElementById('premium-paywall').classList.remove('hidden');
+            document.getElementById('premium-output-box').classList.add('hidden');
+            document.getElementById('core-status').innerText = "● CORE_ONLINE";
+            document.getElementById('core-status').className = "absolute top-3 right-4 text-[10px] tech-font text-emerald-500 tracking-widest animate-pulse";
+        }
+    </script>
+</body>
+</html>
