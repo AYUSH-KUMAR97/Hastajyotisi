@@ -203,7 +203,8 @@
 
             runHUDLogs(freeLogs, async () => {
                 try {
-                    const res = await fetch('http://127.0.0.1:8000/predict', {
+                    // 🔥 Localhost हटाकर सिर्फ '/predict' कर दिया
+                    const res = await fetch('/predict', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, dob })
@@ -253,7 +254,7 @@
 
             runHUDLogs(premiumLogs, async () => {
                 try {
-                    const res = await fetch('http://127.0.0.1:8000/predict-premium', {
+                    const res = await fetch('/predict-premium', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, dob, birth_time, birth_place })
