@@ -10,7 +10,7 @@ from google import genai
 from google.genai import types
 
 # Teri purani calculation file se functions import ho rahe hain
-from numerology_engine import (
+from api.numerology_engine import (
     calculate_numerology,
     calculate_name_number,
     check_compatibility
