@@ -145,12 +145,18 @@ def get_premium_prediction(user_data: PremiumInput):
     TONE: Deeply analytical, authoritative, sharp, and highly detailed Hinglish.
     
     CRITICAL RULE: This is a PAID premium report. The response must be highly DETAILED and exhaustive (around 500-600 words). 
-    Break down the analysis into 4 clear, structured sections using professional headers:
+    Break down the analysis into 7 clear, structured sections using professional headers:
     
     1. 📊 VEDIC MATRIX DECRYPTION: Explain their Rashi, Nakshatra lord, and how their birth details affect them.
     2. 🔢 NUMEROLOGY DEEP DIVE: Detail the hidden connection between Moolank, Bhagyank, and why their current name is a toxic mismatch.
     3. ⚡ 3 PREMIUM NAME SUGGESTIONS: Provide 3 ultra-modern, powerful names. For EACH name, explicitly show the Chaldean letter-by-letter math (e.g., A(1)+Y(1)...) to prove it equals their Target Lucky Number.
     4. 🗺️ COSMIC EXECUTION PLAN: Step-by-step instructions on how to start using this new name to unlock success.
+    5. LIFEPATH & CAREER MATRIX: Specific job sectors, business growth, and technical/non-technical roles suited for them based on quantum numerology.
+    6. TIMELINE DECRYPTION: What fields will bring financial success and when?
+    7. SYSTEM PATCHES: Remedies for career obstacles.
+    
+    Keep the tone extremely futuristic, hacker-style, and highly technical. Use neon themes in description.
+    """
     """
     
     premium_context = f"""
