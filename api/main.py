@@ -124,7 +124,7 @@ def get_free_prediction(user_data: FreeInput):
 
 
 # =====================================================================
-# 2. 💎 PREMIUM ENDPOINT: DETAILED & LONG CASE STUDY (500+ words)
+# 2. 💎 PREMIUM ENDPOINT: DETAILED CAREER & NAME DECRYPTION (500+ words)
 # =====================================================================
 @app.post("/predict-premium")
 def get_premium_prediction(user_data: PremiumInput):
@@ -139,26 +139,23 @@ def get_premium_prediction(user_data: PremiumInput):
     if rashi_data is None:
         raise HTTPException(status_code=400, detail="Birth Time input invalid hai.")
         
-    # SYSTEM PROMPT: AI ko order ki full paid report generate kare letter-by-letter calculation ke sath
+    # 🔥 FIXED SYSTEM PROMPT: Now strictly includes Career, Job Sector, and Financial Timeline!
     PREMIUM_SYSTEM_INSTRUCTION = """
-    ROLE: You are an Elite Premium Astro-Numerologist & Quantum Consultant. 
+    ROLE: You are an Elite Premium Astro-Numerologist, Cybernetic Career Forecaster & Quantum Consultant. 
     TONE: Deeply analytical, authoritative, sharp, and highly detailed Hinglish.
     
     CRITICAL RULE: This is a PAID premium report. The response must be highly DETAILED and exhaustive (around 500-600 words). 
-    Break down the analysis into 7 clear, structured sections using professional headers:
+    Break down the analysis into 4 clear, structured sections using professional neon headers:
     
-    1. 📊 VEDIC MATRIX DECRYPTION: Explain their Rashi, Nakshatra lord, and how their birth details affect them.
-    2. 🔢 NUMEROLOGY DEEP DIVE: Detail the hidden connection between Moolank, Bhagyank, and why their current name is a toxic mismatch.
-    3. ⚡ 3 PREMIUM NAME SUGGESTIONS: Provide 3 ultra-modern, powerful names. For EACH name, explicitly show the Chaldean letter-by-letter math (e.g., A(1)+Y(1)...) to prove it equals their Target Lucky Number.
-    4. 🗺️ COSMIC EXECUTION PLAN: Step-by-step instructions on how to start using this new name to unlock success.
-    5. LIFEPATH & CAREER MATRIX: Specific job sectors, business growth, and technical/non-technical roles suited for them based on quantum numerology.
-    6. TIMELINE DECRYPTION: What fields will bring financial success and when?
-    7. SYSTEM PATCHES: Remedies for career obstacles.
+    1. 📊 VEDIC MATRIX & QUANTUM ENERGY: Explain their Rashi, Nakshatra lord, and how their birth place and time coordinates affect their core personality.
+    2. 💼 LIFEPATH & CAREER MATRIX (CAREER & JOB FOCUS): Detailed breakdown of their ideal Career Paths. Specify whether they are made for Technical Jobs (AI/ML, Software, Engineering), Government Sectors, Corporate Management, or Freelance Businesses. Tell them which specific job roles will bring the maximum money and when their high-growth financial timeline starts.
+    3. 🔢 NUMEROLOGY & NAME MISMATCH: Detail the hidden connection between Moolank and Bhagyank, and explain why their current name creates a toxic obstacle in their Job/Business growth.
+    4. ⚡ 3 PREMIUM NAME SUGGESTIONS FOR SUCCESS: Provide 3 ultra-modern, powerful names suited for high-growth tech/corporate sectors. For EACH name, explicitly show the Chaldean letter-by-letter math (e.g., A(1)+Y(1)...) to prove it equals their Target Lucky Number.
     
     Keep the tone extremely futuristic, hacker-style, and highly technical. Use neon themes in description.
     """
-    """
     
+    # Pass all variables including birth_place to the context
     premium_context = f"""
     Current Name: {user_data.name}
     Calculated Janm Rashi: {rashi_data['rashi']}
@@ -166,10 +163,11 @@ def get_premium_prediction(user_data: PremiumInput):
     Target Lucky Number for New Name: {rashi_data['details']['lucky_num']}
     Allowed Starting Letters: {', '.join(rashi_data['details']['letters'])}
     Moolank: {num_data['Moolank']}, Bhagyank: {num_data['Bhagyank']}
+    Birth Time: {user_data.birth_time}
+    Birth Place: {user_data.birth_place}
     """
     
     try:
-        # ⚠️ YAHAN BHI APNI ASLI GEMINI API KEY PASTE KARNA
         client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
         
         response = client.models.generate_content(
@@ -177,7 +175,7 @@ def get_premium_prediction(user_data: PremiumInput):
             contents=premium_context,
             config=types.GenerateContentConfig(
                 system_instruction=PREMIUM_SYSTEM_INSTRUCTION, 
-                temperature=0.6  # Temperature low rakha taqi math calculations ekdum perfect kare
+                temperature=0.6  # Math aur analytics ekdum stable rakhne ke liye
             )
         )
         return {
